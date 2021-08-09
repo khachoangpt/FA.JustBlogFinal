@@ -51,6 +51,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\Repositories\GenericRepository.cs" />
+    <Compile Include="Infrastructure\Repositories\IGenericRepository.cs" />
+    <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="JustBlogContext.cs" />
     <Compile Include="JustBlogInitializer.cs" />
     <Compile Include="Migrations\202108090643380_InitialCreate.cs" />

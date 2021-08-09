@@ -14,11 +14,6 @@ namespace FA.JustBlog.Models.Common
         [Required(ErrorMessage = "The {0} is required.")]
         public string Email { get; set; }
 
-        [ForeignKey("Post")]
-        public Guid PostId { get; set; }
-
-        public virtual Post Post { get; set; }
-
         [StringLength(255, MinimumLength = 1, ErrorMessage = "The {0} must between {2} and {1} character.")]
         [Display(Name = "Comment Header")]
         public string CommentHeader { get; set; }
@@ -29,6 +24,11 @@ namespace FA.JustBlog.Models.Common
 
         [Required(ErrorMessage = "The {0} is required.")]
         [Display(Name = "Comment Time")]
-        public DateTime CommentTime { get; set; }
+        public DateTimeOffset CommentTime { get; set; }
+
+        [ForeignKey("Post")]
+        public virtual Guid PostId { get; set; }
+
+        public virtual Post Post { get; set; }
     }
 }

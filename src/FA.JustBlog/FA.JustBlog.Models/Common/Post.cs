@@ -30,10 +30,10 @@ namespace FA.JustBlog.Models.Common
         public bool Published { get; set; }
 
         [Required(ErrorMessage = "The {0} is required.")]
-        public DateTime PostedOn { get; set; }
+        public DateTimeOffset PostedOn { get; set; }
 
         [Required(ErrorMessage = "The {0} is required.")]
-        public DateTime Modified { get; set; }
+        public DateTimeOffset Modified { get; set; }
 
         [Required(ErrorMessage = "The {0} is required.")]
         [Display(Name = "View Count")]
@@ -51,7 +51,7 @@ namespace FA.JustBlog.Models.Common
         public decimal Rate { get => TotalRate / RateCount; }
 
         [ForeignKey("Category")]
-        public Guid CategoryId { get; set; }
+        public virtual Guid CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
 
