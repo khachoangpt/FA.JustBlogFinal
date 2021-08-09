@@ -75,6 +75,14 @@
     <Compile Include="Migrations\202108090654304_AddCommentObject.designer.cs">
       <DependentUpon>202108090654304_AddCommentObject.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202108091455238_UpdateDateTime.cs" />
+    <Compile Include="Migrations\202108091455238_UpdateDateTime.designer.cs">
+      <DependentUpon>202108091455238_UpdateDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108091601278_AddUser.cs" />
+    <Compile Include="Migrations\202108091601278_AddUser.designer.cs">
+      <DependentUpon>202108091601278_AddUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -97,6 +105,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202108090654304_AddCommentObject.resx">
       <DependentUpon>202108090654304_AddCommentObject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108091455238_UpdateDateTime.resx">
+      <DependentUpon>202108091455238_UpdateDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108091601278_AddUser.resx">
+      <DependentUpon>202108091601278_AddUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

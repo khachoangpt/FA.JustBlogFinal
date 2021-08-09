@@ -188,7 +188,18 @@
   <ItemGroup>
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\Site.css" />
+    <Content Include="Assets\images\about-bg.jpg" />
+    <Content Include="Assets\images\bg.png" />
+    <Content Include="Assets\images\blog-1.jpg" />
+    <Content Include="Assets\images\blog-2.jpg" />
+    <Content Include="Assets\images\blog-3.jpg" />
+    <Content Include="Assets\images\blog-4.jpg" />
+    <Content Include="Assets\images\blog-5.jpg" />
+    <Content Include="Assets\images\blog-6.jpg" />
     <Content Include="Assets\images\bootstrap-solid.svg" />
+    <Content Include="Assets\images\facebook-f-brands.svg" />
+    <Content Include="Assets\images\github-brands.svg" />
+    <Content Include="Assets\images\google-brands.svg" />
     <Content Include="Assets\js\bootstrap.min.js" />
     <Content Include="Assets\js\jquery-3.4.1.js" />
     <Content Include="Assets\js\jquery-3.4.1.min.js" />
@@ -198,6 +209,7 @@
     <Content Include="Assets\js\modernizr-2.8.3.js" />
     <Content Include="Assets\js\popper.min.js" />
     <Content Include="Assets\js\respond.min.js" />
+    <Content Include="Assets\js\scripts.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="readme.txt" />
