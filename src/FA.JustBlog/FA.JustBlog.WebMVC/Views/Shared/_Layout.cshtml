@@ -4,34 +4,36 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="icon" href="~/Assets/images/bootstrap-solid.svg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="@Url.Action("Index", "Home", new { area = "" })">
-            <img src="~/Assets/images/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-            Bootstrap
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <a class="navbar-brand" href="~/">
+            <img src="~/assets/images/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+            Just Blog
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="@Url.Action("Index", "Home", new { area = "" })">Home <span class="sr-only">(current)</span></a>
+                    @Html.ActionLink("Home", "Index", "Post", null, new { @class = "nav-link" })
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("About", "Home", new { area = "" })">About</a>
+                @{ Html.RenderAction("Index", "Category");}
+                <li class="nav-item active">
+                    @Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Contact", "Home", new { area = "" })">Contact</a>
+                <li class="nav-item active">
+                    @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })
                 </li>
                 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                 {
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Admin Dashboard
                         </a>
@@ -39,32 +41,40 @@
                             <a class="dropdown-item" href="@Url.Action("Index", "UsersAdmin", new { area = "Identity" })">Users Admin</a>
                             <a class="dropdown-item" href="@Url.Action("Index", "RolesAdmin", new { area = "Identity" })">Roles Admin</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Manager</a>
+                            <a class="dropdown-item" href="@Url.Action("Index", "PostsManagement", new { area = "Admin"})">Post Management</a>
+                            <a class="dropdown-item" href="@Url.Action("Index", "CategoriesManagement", new { area = "Admin"})">Category Management</a>
+                            <a class="dropdown-item" href="@Url.Action("Index", "TagsManagement", new { area = "Admin"})">Tag Management</a>
+                            <a class="dropdown-item" href="@Url.Action("Index", "CommentsManagement", new { area = "Admin"})">Comment Management</a>
                         </div>
                     </li>
                 }
             </ul>
             @Html.Partial("_LoginPartial")
         </div>
-    </nav>
+        </nav>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3">
-                <h1>Left Menu</h1>
-            </div>
-            <div class="col-md-9">
-                @RenderBody()
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    @RenderBody()
+                </div>
+                <div class="col-lg-4 pl-5 bg-custom">
+                    @{ Html.RenderAction("LastestPost", "Post");}
+                    <hr />
+                    @Html.Partial("_AboutPartial")
+                    <hr />
+                    @{ Html.RenderAction("MostViewedPost", "Post");}
+                    <hr />
+                    @{ Html.RenderAction("PopularTags", "Tag");}
+                </div>
             </div>
         </div>
-    </div>
+        <footer>
+            @Html.Partial("_FooterPartial")
+        </footer>
 
-    <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-    </footer>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
 </body>
 </html>

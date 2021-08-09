@@ -88,9 +88,9 @@ namespace FA.JustBlog.Services
             return await _unitOfWork.PostRepository.GetQuery().Where(x => x.Published == published).ToListAsync();
         }
 
-        public async Task<IEnumerable<Post>> FindPostAsync(int year, int month, string title)
+        public async Task<Post> FindPostAsync(int year, int month, string urlSlug)
         {
-            return await _unitOfWork.PostRepository.GetQuery().Where(x => x.PostedOn.Year == year && x.PostedOn.Month == month && x.UrlSlug.Equals(title)).ToListAsync();
+            return await _unitOfWork.PostRepository.GetQuery().Where(x => x.PostedOn.Year == year && x.PostedOn.Month == month && x.UrlSlug.Equals(urlSlug)).FirstOrDefaultAsync();
         }
 
         public IEnumerable<Post> GetMostViewedPost(int size)

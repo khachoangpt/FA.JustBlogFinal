@@ -45,7 +45,7 @@ namespace FA.JustBlog.Services
         /// <param name="month">Month</param>
         /// <param name="title">Title</param>
         /// <returns></returns>
-        Task<IEnumerable<Post>> FindPostAsync(int year, int month, string title);
+        Task<Post> FindPostAsync(int year, int month, string urlSlug);
 
         /// <summary>
         /// Count Post By Category with Async
