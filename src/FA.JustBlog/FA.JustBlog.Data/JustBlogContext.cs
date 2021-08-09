@@ -10,6 +10,18 @@ namespace FA.JustBlog.Data
             Database.SetInitializer(new JustBlogInitializer());
         }
 
+        static JustBlogContext()
+        {
+            // Set the database initializer which is run once during application start
+            // This seeds the database with admin user credentials and admin role
+            Database.SetInitializer<JustBlogContext>(new JustBlogInitializer());
+        }
+
+        public static JustBlogContext Create()
+        {
+            return new JustBlogContext();
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Post>()
