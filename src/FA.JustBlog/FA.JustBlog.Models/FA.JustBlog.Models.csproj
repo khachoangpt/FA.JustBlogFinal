@@ -54,6 +54,7 @@
     <Compile Include="BaseEntities\BaseEntity.cs" />
     <Compile Include="BaseEntities\IBaseEntity.cs" />
     <Compile Include="Common\Category.cs" />
+    <Compile Include="Common\Comment.cs" />
     <Compile Include="Common\Post.cs" />
     <Compile Include="Common\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

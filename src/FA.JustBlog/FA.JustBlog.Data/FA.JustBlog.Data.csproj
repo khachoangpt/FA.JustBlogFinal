@@ -57,6 +57,14 @@
     <Compile Include="Migrations\202108090643380_InitialCreate.designer.cs">
       <DependentUpon>202108090643380_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202108090650066_UpdatePost.cs" />
+    <Compile Include="Migrations\202108090650066_UpdatePost.designer.cs">
+      <DependentUpon>202108090650066_UpdatePost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108090654304_AddCommentObject.cs" />
+    <Compile Include="Migrations\202108090654304_AddCommentObject.designer.cs">
+      <DependentUpon>202108090654304_AddCommentObject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -73,6 +81,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202108090643380_InitialCreate.resx">
       <DependentUpon>202108090643380_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108090650066_UpdatePost.resx">
+      <DependentUpon>202108090650066_UpdatePost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108090654304_AddCommentObject.resx">
+      <DependentUpon>202108090654304_AddCommentObject.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

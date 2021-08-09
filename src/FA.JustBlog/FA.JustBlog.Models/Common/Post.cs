@@ -35,11 +35,28 @@ namespace FA.JustBlog.Models.Common
         [Required(ErrorMessage = "The {0} is required.")]
         public DateTime Modified { get; set; }
 
+        [Required(ErrorMessage = "The {0} is required.")]
+        [Display(Name = "View Count")]
+        public int ViewCount { get; set; }
+
+        [Required(ErrorMessage = "The {0} is required.")]
+        [Display(Name = "Rate Count")]
+        public int RateCount { get; set; }
+
+        [Required(ErrorMessage = "The {0} is required.")]
+        [Display(Name = "Total Rate")]
+        public int TotalRate { get; set; }
+
+        [NotMapped]
+        public decimal Rate { get => TotalRate / RateCount; }
+
         [ForeignKey("Category")]
         public Guid CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
 
         public virtual IList<Tag> Tags { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }
