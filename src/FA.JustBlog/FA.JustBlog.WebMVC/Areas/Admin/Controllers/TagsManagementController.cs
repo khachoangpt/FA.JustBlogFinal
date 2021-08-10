@@ -2,12 +2,15 @@
 using FA.JustBlog.Services;
 using FA.JustBlog.WebMVC.ViewModels;
 using System;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace FA.JustBlog.WebMVC.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class TagsManagementController : Controller
     {
         private readonly ITagServices _tagServices;
@@ -17,10 +20,66 @@ namespace FA.JustBlog.WebMVC.Areas.Admin.Controllers
             _tagServices = tagServices;
         }
 
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string sortOrder, string currentFilter, string searchString,
+            int? pageIndex = 1, int pageSize = 4)
         {
-            var posts = await _tagServices.GetAllAsync();
-            return View(posts);
+            ViewData["CurrentPageSize"] = pageSize;
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["TagNameSortParm"] = string.IsNullOrEmpty(sortOrder) ? "tagName_desc" : "";
+            ViewData["UrlSlugSortParm"] = sortOrder == "UrlSlug" ? "urlSlug_desc" : "UrlSlug";
+            ViewData["DescriptionSortParm"] = sortOrder == "Description" ? "description_desc" : "Description";
+            ViewData["CountSortParm"] = sortOrder == "Count" ? "count_desc" : "Count";
+
+            if (searchString != null)
+            {
+                pageIndex = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+
+            Expression<Func<Tag, bool>> filter = null;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                filter = c => c.Name.Contains(searchString);
+            }
+
+            Func<IQueryable<Tag>, IOrderedQueryable<Tag>> orderBy = null;
+
+            switch (sortOrder)
+            {
+                case "tagName_desc":
+                    orderBy = q => q.OrderByDescending(t => t.Name);
+                    break;
+                case "UrlSlug":
+                    orderBy = q => q.OrderBy(t => t.UrlSlug);
+                    break;
+                case "urlSlug_desc":
+                    orderBy = q => q.OrderByDescending(t => t.UrlSlug);
+                    break;
+                case "Description":
+                    orderBy = q => q.OrderBy(t => t.Description);
+                    break;
+                case "description_desc":
+                    orderBy = q => q.OrderByDescending(t => t.Description);
+                    break;
+                case "Count":
+                    orderBy = q => q.OrderBy(t => t.Count);
+                    break;
+                case "count_desc":
+                    orderBy = q => q.OrderByDescending(t => t.Count);
+                    break;
+                default:
+                    orderBy = q => q.OrderBy(t => t.Name);
+                    break;
+            }
+
+            var tags = await _tagServices.GetAsync(filter: filter, orderBy: orderBy, pageIndex: pageIndex ?? 1, pageSize: pageSize);
+            return View(tags);
         }
 
         public ActionResult Create()

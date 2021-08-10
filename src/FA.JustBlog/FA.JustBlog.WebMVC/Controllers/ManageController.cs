@@ -13,14 +13,6 @@ namespace FA.JustBlog.WebMVC.Controllers
     [Authorize]
     public class ManageController : Controller
     {
-        public ManageController()
-        {
-        }
-
-        public ManageController(ApplicationUserManager userManager)
-        {
-            UserManager = userManager;
-        }
 
         private ApplicationUserManager _userManager;
         public ApplicationUserManager UserManager
@@ -33,6 +25,15 @@ namespace FA.JustBlog.WebMVC.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        public ManageController()
+        {
+        }
+
+        public ManageController(ApplicationUserManager userManager)
+        {
+            UserManager = userManager;
         }
 
         //

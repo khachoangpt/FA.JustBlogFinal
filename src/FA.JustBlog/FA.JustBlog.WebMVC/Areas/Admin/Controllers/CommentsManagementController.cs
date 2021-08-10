@@ -2,12 +2,15 @@
 using FA.JustBlog.Services;
 using FA.JustBlog.WebMVC.ViewModels;
 using System;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace FA.JustBlog.WebMVC.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CommentsManagementController : Controller
     {
         private readonly ICommentServices _commentServices;
@@ -19,10 +22,80 @@ namespace FA.JustBlog.WebMVC.Areas.Admin.Controllers
             _postServices = postServices;
         }
 
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string sortOrder, string currentFilter, string searchString,
+            int? pageIndex = 1, int pageSize = 4)
         {
-            var posts = await _commentServices.GetAllAsync();
-            return View(posts);
+            ViewData["CurrentPageSize"] = pageSize;
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["CommentNameSortParm"] = string.IsNullOrEmpty(sortOrder) ? "commentName_desc" : "";
+            ViewData["EmailSortParm"] = sortOrder == "Email" ? "email_desc" : "Email";
+            ViewData["TitleSortParm"] = sortOrder == "Title" ? "title_desc" : "Title";
+            ViewData["CommentHeaderSortParm"] = sortOrder == "CommentHeader" ? "commentHeader_desc" : "CommentHeader";
+            ViewData["CommentTextSortParm"] = sortOrder == "CommentText" ? "commentText_desc" : "CommentText";
+            ViewData["CommentTimeSortParm"] = sortOrder == "CommentTime" ? "commentTime_desc" : "CommentTime";
+
+            if (searchString != null)
+            {
+                pageIndex = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+
+            Expression<Func<Comment, bool>> filter = null;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                filter = p => p.Name.Contains(searchString);
+            }
+
+            Func<IQueryable<Comment>, IOrderedQueryable<Comment>> orderBy = null;
+
+            switch (sortOrder)
+            {
+                case "commentName_desc":
+                    orderBy = q => q.OrderByDescending(c => c.Name);
+                    break;
+                case "Email":
+                    orderBy = q => q.OrderBy(c => c.Email);
+                    break;
+                case "email_desc":
+                    orderBy = q => q.OrderByDescending(c => c.Email);
+                    break;
+                case "Title":
+                    orderBy = q => q.OrderBy(c => c.Post.Title);
+                    break;
+                case "title_desc":
+                    orderBy = q => q.OrderByDescending(c => c.Post.Title);
+                    break;
+                case "CommentHeader":
+                    orderBy = q => q.OrderBy(c => c.CommentHeader);
+                    break;
+                case "commentHeader_desc":
+                    orderBy = q => q.OrderByDescending(c => c.CommentHeader);
+                    break;
+                case "CommentText":
+                    orderBy = q => q.OrderBy(c => c.CommentText);
+                    break;
+                case "commentText_desc":
+                    orderBy = q => q.OrderByDescending(c => c.CommentText);
+                    break;
+                case "CommentTime":
+                    orderBy = q => q.OrderBy(c => c.CommentTime);
+                    break;
+                case "commentTime_desc":
+                    orderBy = q => q.OrderByDescending(c => c.CommentTime);
+                    break;
+                default:
+                    orderBy = q => q.OrderBy(c => c.Name);
+                    break;
+            }
+
+            var comments = await _commentServices.GetAsync(filter: filter, orderBy: orderBy, pageIndex: pageIndex ?? 1, pageSize: pageSize);
+            return View(comments);
         }
 
         public ActionResult Create()

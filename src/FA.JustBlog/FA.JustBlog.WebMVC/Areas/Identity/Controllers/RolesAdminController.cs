@@ -15,16 +15,6 @@ namespace FA.JustBlog.WebMVC.Areas.Identity.Controllers
     [Authorize(Roles = "Admin")]
     public class RolesAdminController : Controller
     {
-        public RolesAdminController()
-        {
-        }
-
-        public RolesAdminController(ApplicationUserManager userManager,
-            ApplicationRoleManager roleManager)
-        {
-            UserManager = userManager;
-            RoleManager = roleManager;
-        }
 
         private ApplicationUserManager _userManager;
         public ApplicationUserManager UserManager
@@ -50,6 +40,16 @@ namespace FA.JustBlog.WebMVC.Areas.Identity.Controllers
             {
                 _roleManager = value;
             }
+        }
+
+        public RolesAdminController(ApplicationUserManager userManager, ApplicationRoleManager roleManager)
+        {
+            UserManager = userManager;
+            RoleManager = roleManager;
+        }
+
+        public RolesAdminController()
+        {
         }
 
         //

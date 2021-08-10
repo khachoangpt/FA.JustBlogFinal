@@ -1,20 +1,34 @@
-﻿@model IEnumerable<Category>
+﻿@model Paginated<Category>
 
 @{
     ViewBag.Title = "Category Management";
 }
 <h2 class="text-center">Category Management</h2>
-<h3 class="text-success time-hide">@TempData["Message"]</h3>
-<button class="btn btn-primary mb-3">
+<h4 class="text-success time-hide">@TempData["Message"]</h4>
+<div class="btn btn-primary mb-3">
     @Html.ActionLink("Create New", "Create", null, new { @class = "text-white text-decoration-none" })
-</button>
+</div>
+<form action="@Url.Action("Index", "CategoriesManagement")" method="get" class="form-inline float-right">
+    <div class="form-group mx-md-3 mb-2">
+        <input type="text" class="form-control mr-3" id="inputSearch" name="SearchString" value="@ViewData["currentFilter"]" placeholder="Input....">
+        <button type="submit" class=" form-control btn btn-primary">
+            Search
+        </button>
+    </div>
+</form>
 
 <table class="table table-bordered table-dark">
     <thead>
         <tr class="text-center">
-            <th scope="col">@Html.DisplayNameFor(model => model.Name)</th>
-            <th scope="col">@Html.DisplayNameFor(model => model.UrlSlug)</th>
-            <th scope="col">@Html.DisplayNameFor(model => model.Description)</th>
+            <th scope="col">
+                <a href="@Url.Action("Index", "CategoriesManagement", new { sortOrder = ViewData["CategoryNameSortParm"], currentFilter = ViewData["CurrentFilter"] })">Category Name</a>
+            </th>
+            <th scope="col">
+                <a href="@Url.Action("Index", "CategoriesManagement", new { sortOrder = ViewData["UrlSlugSortParm"], currentFilter = ViewData["CurrentFilter"] })">Url Slug</a>
+            </th>
+            <th scope="col">
+                <a href="@Url.Action("Index", "CategoriesManagement", new { sortOrder = ViewData["DescriptionSortParm"], currentFilter = ViewData["CurrentFilter"] })">Description</a>
+            </th>
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -35,3 +49,38 @@
         }
     </tbody>
 </table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center font-weight-bold">
+        @{
+            var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+            var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+            ViewBag.PageRange = 3;
+        }
+        <li class="page-item">
+            <a href="@Url.Action("Index", "CategoriesManagement", new { sortOrder=ViewData["CurrentSort"], pageIndex=1, currentFilter=ViewData["CurrentFilter"] })"
+               class="btn page-link @prevDisabled"><<</a>
+        </li>
+        <li class="page-item">
+            <a href="@Url.Action("Index", "CategoriesManagement", new { sortOrder=ViewData["CurrentSort"], pageIndex=(Model.PageIndex - 1 <= 0 ? 1 : Model.PageIndex - 1), currentFilter=ViewData["CurrentFilter"] })"
+               class="btn page-link @prevDisabled"><</a>
+        </li>
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            if (i >= Model.PageIndex - ViewBag.PageRange && i <= Model.PageIndex + ViewBag.PageRange)
+            {
+                <li class="page-item @(i==Model.PageIndex ? "active" : "")">
+                    <a class="@(i==Model.PageIndex ? "Current" : "") page-link"
+                       href="@Url.Action("Index", "CategoriesManagement", new { sortOrder=ViewData["CurrentSort"], pageIndex=i, currentFilter=ViewData["CurrentFilter"] })">@i</a>
+                </li>
+            }
+        }
+        <li class="page-item">
+            <a href="@Url.Action("Index", "CategoriesManagement", new { sortOrder=ViewData["CurrentSort"], pageIndex=(Model.PageIndex + 1 > Model.TotalPages ? Model.TotalPages : Model.PageIndex + 1), currentFilter=ViewData["CurrentFilter"] })"
+               class="btn page-link @nextDisabled">></a>
+        </li>
+        <li class="page-item">
+            <a href="@Url.Action("Index", "CategoriesManagement", new { sortOrder=ViewData["CurrentSort"], pageIndex=(Model.TotalPages), currentFilter=ViewData["CurrentFilter"] })"
+               class="btn page-link @nextDisabled">>></a>
+        </li>
+    </ul>
+</nav>

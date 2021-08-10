@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace FA.JustBlog.WebMVC.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class PostsManagementController : Controller
     {
         private readonly IPostServices _postServices;
@@ -52,7 +53,7 @@ namespace FA.JustBlog.WebMVC.Areas.Admin.Controllers
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                filter = p => p.Title.Contains(searchString) || p.ShortDescription.Contains(searchString);
+                filter = p => p.Title.Contains(searchString);
             }
 
             Func<IQueryable<Post>, IOrderedQueryable<Post>> orderBy = null;

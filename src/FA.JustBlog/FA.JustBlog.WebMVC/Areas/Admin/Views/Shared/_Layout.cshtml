@@ -24,16 +24,22 @@
             <div class="menu-list pt-2">
                 <ul id="menu-content" class="menu-content collapse flex-column nav ml-2 mr-2">
                     <li class="btn btn-secondary btn-sm btn-block mb-3">
-                        @Html.ActionLink("Post Management", "Index", "PostsManagement", null, new { @class = "nav-link text-white" })
+                        @Html.ActionLink("Post Management", "Index", "PostsManagement", new { area = "Admin" }, new { @class = "nav-link text-white" })
                     </li>
                     <li class="btn btn-secondary btn-sm btn-block mb-3">
-                        @Html.ActionLink("Category Management", "Index", "CategoriesManagement", null, new { @class = "nav-link text-white" })
+                        @Html.ActionLink("Category Management", "Index", "CategoriesManagement", new { area = "Admin" }, new { @class = "nav-link text-white" })
                     </li>
                     <li class="btn btn-secondary btn-sm btn-block mb-3">
-                        @Html.ActionLink("Tag Management", "Index", "TagsManagement", null, new { @class = "nav-link text-white" })
+                        @Html.ActionLink("Tag Management", "Index", "TagsManagement", new { area = "Admin" }, new { @class = "nav-link text-white" })
                     </li>
                     <li class="btn btn-secondary btn-sm btn-block mb-3">
-                        @Html.ActionLink("Comment Management", "Index", "CommentsManagement", null, new { @class = "nav-link text-white" })
+                        @Html.ActionLink("Comment Management", "Index", "CommentsManagement", new { area = "Admin" }, new { @class = "nav-link text-white" })
+                    </li>
+                    <li class="btn btn-secondary btn-sm btn-block mb-3">
+                        @Html.ActionLink("Users Admin", "Index", "UsersAdmin", new { area = "Identity" }, new { @class = "nav-link text-white" })
+                    </li>
+                    <li class="btn btn-secondary btn-sm btn-block mb-3">
+                        @Html.ActionLink("Roles Admin", "Index", "RolesAdmin", new { area = "Identity" }, new { @class = "nav-link text-white" })
                     </li>
                 </ul>
             </div>

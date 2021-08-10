@@ -2,12 +2,15 @@
 using FA.JustBlog.Services;
 using FA.JustBlog.WebMVC.ViewModels;
 using System;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace FA.JustBlog.WebMVC.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CategoriesManagementController : Controller
     {
         private readonly ICategoryServices _categoryServices;
@@ -17,10 +20,59 @@ namespace FA.JustBlog.WebMVC.Areas.Admin.Controllers
             _categoryServices = categoryServices;
         }
 
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string sortOrder, string currentFilter, string searchString,
+            int? pageIndex = 1, int pageSize = 4)
         {
-            var posts = await _categoryServices.GetAllAsync();
-            return View(posts);
+            ViewData["CurrentPageSize"] = pageSize;
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["CategoryNameSortParm"] = string.IsNullOrEmpty(sortOrder) ? "categoryName_desc" : "";
+            ViewData["UrlSlugSortParm"] = sortOrder == "UrlSlug" ? "urlSlug_desc" : "UrlSlug";
+            ViewData["DescriptionSortParm"] = sortOrder == "Description" ? "description_desc" : "Description";
+
+            if (searchString != null)
+            {
+                pageIndex = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+
+            Expression<Func<Category, bool>> filter = null;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                filter = c => c.Name.Contains(searchString);
+            }
+
+            Func<IQueryable<Category>, IOrderedQueryable<Category>> orderBy = null;
+
+            switch (sortOrder)
+            {
+                case "categoryName_desc":
+                    orderBy = q => q.OrderByDescending(c => c.Name);
+                    break;
+                case "UrlSlug":
+                    orderBy = q => q.OrderBy(c => c.UrlSlug);
+                    break;
+                case "urlSlug_desc":
+                    orderBy = q => q.OrderByDescending(c => c.UrlSlug);
+                    break;
+                case "Description":
+                    orderBy = q => q.OrderBy(c => c.Description);
+                    break;
+                case "description_desc":
+                    orderBy = q => q.OrderByDescending(c => c.Description);
+                    break;
+                default:
+                    orderBy = q => q.OrderBy(c => c.Name);
+                    break;
+            }
+            var categories = await _categoryServices.GetAsync(filter: filter, orderBy: orderBy, pageIndex: pageIndex ?? 1, pageSize: pageSize);
+
+            return View(categories);
         }
 
         public ActionResult Create()
