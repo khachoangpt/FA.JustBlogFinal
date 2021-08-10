@@ -16,7 +16,9 @@ namespace FA.JustBlog.Data.Infrastructure.Repositories
         public GenericRepository(JustBlogContext context)
         {
             _context = context;
+
             var typeOfDbSet = typeof(DbSet<T>);
+
             foreach (var prop in context.GetType().GetProperties())
             {
                 if (typeOfDbSet == prop.PropertyType)

@@ -227,6 +227,7 @@
     <Content Include="Assets\css\bootstrap.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\Site.css" />
+    <Content Include="Assets\css\style.css" />
     <Content Include="Assets\images\about-bg.jpg" />
     <Content Include="Assets\images\bg.png" />
     <Content Include="Assets\images\blog-1.jpg" />
@@ -270,6 +271,7 @@
     <Content Include="Assets\js\popper.min.js" />
     <Content Include="Assets\js\respond.min.js" />
     <Content Include="Assets\js\scripts.js" />
+    <Content Include="Assets\js\select2.min.js" />
     <Content Include="Assets\js\src\index.js" />
     <Content Include="Assets\js\src\methods\defaults.js" />
     <Content Include="Assets\js\src\methods\destroy.js" />

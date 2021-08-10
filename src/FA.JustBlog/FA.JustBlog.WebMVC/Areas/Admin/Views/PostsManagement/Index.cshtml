@@ -4,10 +4,12 @@
     ViewBag.Title = "Post Management";
 }
 <h2 class="text-center">Post Management</h2>
-<h3 class="text-success time-hide">@TempData["Message"]</h3>
-<button class="btn btn-primary mb-3">
-    @Html.ActionLink("Create New", "Create", null, new { @class = "text-white text-decoration-none" })
-</button>
+<div class="d-flex">
+    <button class="btn btn-primary mb-3 mr-3">
+        @Html.ActionLink("Create New", "Create", null, new { @class = "text-white text-decoration-none" })
+    </button>
+    <h4 class="text-success time-hide">@TempData["Message"]</h4>
+</div>
 
 <table class="table table-bordered table-dark">
     <thead>
