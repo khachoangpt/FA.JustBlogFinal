@@ -190,6 +190,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoriesManagementController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CommentsManagementController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PostsManagementController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TagsManagementController.cs" />
     <Compile Include="Areas\Identity\Controllers\RolesAdminController.cs" />
     <Compile Include="Areas\Identity\Controllers\UserAdminController.cs" />
     <Compile Include="Areas\Identity\IdentityAreaRegistration.cs" />
@@ -207,9 +212,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\CommentViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
+    <Compile Include="ViewModels\PostViewModel.cs" />
+    <Compile Include="ViewModels\TagViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\css\bootstrap-grid.css" />
+    <Content Include="Assets\css\bootstrap-grid.min.css" />
+    <Content Include="Assets\css\bootstrap-reboot.css" />
+    <Content Include="Assets\css\bootstrap-reboot.min.css" />
+    <Content Include="Assets\css\bootstrap.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\Site.css" />
     <Content Include="Assets\images\about-bg.jpg" />
@@ -224,16 +239,104 @@
     <Content Include="Assets\images\facebook-f-brands.svg" />
     <Content Include="Assets\images\github-brands.svg" />
     <Content Include="Assets\images\google-brands.svg" />
+    <Content Include="Assets\js\bootstrap.bundle.js" />
+    <Content Include="Assets\js\bootstrap.bundle.min.js" />
+    <Content Include="Assets\js\bootstrap.js" />
     <Content Include="Assets\js\bootstrap.min.js" />
+    <Content Include="Assets\js\esm\popper-utils.js" />
+    <Content Include="Assets\js\esm\popper-utils.min.js" />
+    <Content Include="Assets\js\esm\popper.js" />
+    <Content Include="Assets\js\esm\popper.min.js" />
+    <Content Include="Assets\css\bootstrap-grid.css.map" />
+    <Content Include="Assets\css\bootstrap-grid.min.css.map" />
+    <Content Include="Assets\css\bootstrap-reboot.css.map" />
+    <Content Include="Assets\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Assets\css\bootstrap.css.map" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <None Include="Assets\js\jquery-3.4.1.intellisense.js" />
     <Content Include="Assets\js\jquery-3.4.1.js" />
     <Content Include="Assets\js\jquery-3.4.1.min.js" />
+    <Content Include="Assets\js\jquery-3.4.1.slim.js" />
     <Content Include="Assets\js\jquery-3.4.1.slim.min.js" />
+    <None Include="Assets\js\jquery.validate-vsdoc.js" />
+    <Content Include="Assets\js\jquery.validate.js" />
     <Content Include="Assets\js\jquery.validate.min.js" />
+    <Content Include="Assets\js\jquery.validate.unobtrusive.js" />
     <Content Include="Assets\js\jquery.validate.unobtrusive.min.js" />
     <Content Include="Assets\js\modernizr-2.8.3.js" />
+    <Content Include="Assets\js\popper-utils.js" />
+    <Content Include="Assets\js\popper-utils.min.js" />
+    <Content Include="Assets\js\popper.js" />
     <Content Include="Assets\js\popper.min.js" />
     <Content Include="Assets\js\respond.min.js" />
     <Content Include="Assets\js\scripts.js" />
+    <Content Include="Assets\js\src\index.js" />
+    <Content Include="Assets\js\src\methods\defaults.js" />
+    <Content Include="Assets\js\src\methods\destroy.js" />
+    <Content Include="Assets\js\src\methods\disableEventListeners.js" />
+    <Content Include="Assets\js\src\methods\enableEventListeners.js" />
+    <Content Include="Assets\js\src\methods\placements.js" />
+    <Content Include="Assets\js\src\methods\update.js" />
+    <Content Include="Assets\js\src\modifiers\applyStyle.js" />
+    <Content Include="Assets\js\src\modifiers\arrow.js" />
+    <Content Include="Assets\js\src\modifiers\computeStyle.js" />
+    <Content Include="Assets\js\src\modifiers\flip.js" />
+    <Content Include="Assets\js\src\modifiers\hide.js" />
+    <Content Include="Assets\js\src\modifiers\index.js" />
+    <Content Include="Assets\js\src\modifiers\inner.js" />
+    <Content Include="Assets\js\src\modifiers\keepTogether.js" />
+    <Content Include="Assets\js\src\modifiers\offset.js" />
+    <Content Include="Assets\js\src\modifiers\preventOverflow.js" />
+    <Content Include="Assets\js\src\modifiers\shift.js" />
+    <Content Include="Assets\js\src\utils\clockwise.js" />
+    <Content Include="Assets\js\src\utils\computeAutoPlacement.js" />
+    <Content Include="Assets\js\src\utils\debounce.js" />
+    <Content Include="Assets\js\src\utils\find.js" />
+    <Content Include="Assets\js\src\utils\findCommonOffsetParent.js" />
+    <Content Include="Assets\js\src\utils\findIndex.js" />
+    <Content Include="Assets\js\src\utils\getBordersSize.js" />
+    <Content Include="Assets\js\src\utils\getBoundaries.js" />
+    <Content Include="Assets\js\src\utils\getBoundingClientRect.js" />
+    <Content Include="Assets\js\src\utils\getClientRect.js" />
+    <Content Include="Assets\js\src\utils\getFixedPositionOffsetParent.js" />
+    <Content Include="Assets\js\src\utils\getOffsetParent.js" />
+    <Content Include="Assets\js\src\utils\getOffsetRect.js" />
+    <Content Include="Assets\js\src\utils\getOffsetRectRelativeToArbitraryNode.js" />
+    <Content Include="Assets\js\src\utils\getOppositePlacement.js" />
+    <Content Include="Assets\js\src\utils\getOppositeVariation.js" />
+    <Content Include="Assets\js\src\utils\getOuterSizes.js" />
+    <Content Include="Assets\js\src\utils\getParentNode.js" />
+    <Content Include="Assets\js\src\utils\getPopperOffsets.js" />
+    <Content Include="Assets\js\src\utils\getReferenceNode.js" />
+    <Content Include="Assets\js\src\utils\getReferenceOffsets.js" />
+    <Content Include="Assets\js\src\utils\getRoot.js" />
+    <Content Include="Assets\js\src\utils\getRoundedOffsets.js" />
+    <Content Include="Assets\js\src\utils\getScroll.js" />
+    <Content Include="Assets\js\src\utils\getScrollParent.js" />
+    <Content Include="Assets\js\src\utils\getStyleComputedProperty.js" />
+    <Content Include="Assets\js\src\utils\getSupportedPropertyName.js" />
+    <Content Include="Assets\js\src\utils\getViewportOffsetRectRelativeToArtbitraryNode.js" />
+    <Content Include="Assets\js\src\utils\getWindow.js" />
+    <Content Include="Assets\js\src\utils\getWindowSizes.js" />
+    <Content Include="Assets\js\src\utils\includeScroll.js" />
+    <Content Include="Assets\js\src\utils\index.js" />
+    <Content Include="Assets\js\src\utils\isBrowser.js" />
+    <Content Include="Assets\js\src\utils\isFixed.js" />
+    <Content Include="Assets\js\src\utils\isFunction.js" />
+    <Content Include="Assets\js\src\utils\isIE.js" />
+    <Content Include="Assets\js\src\utils\isModifierEnabled.js" />
+    <Content Include="Assets\js\src\utils\isModifierRequired.js" />
+    <Content Include="Assets\js\src\utils\isNumeric.js" />
+    <Content Include="Assets\js\src\utils\isOffsetContainer.js" />
+    <Content Include="Assets\js\src\utils\removeEventListeners.js" />
+    <Content Include="Assets\js\src\utils\runModifiers.js" />
+    <Content Include="Assets\js\src\utils\setAttributes.js" />
+    <Content Include="Assets\js\src\utils\setStyles.js" />
+    <Content Include="Assets\js\src\utils\setupEventListeners.js" />
+    <Content Include="Assets\js\umd\popper-utils.js" />
+    <Content Include="Assets\js\umd\popper-utils.min.js" />
+    <Content Include="Assets\js\umd\popper.js" />
+    <Content Include="Assets\js\umd\popper.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="readme.txt" />
@@ -293,9 +396,40 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Views\Comment\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\CategoriesManagement\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoriesManagement\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoriesManagement\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CommentsManagement\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PostsManagement\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PostsManagement\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\PostsManagement\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TagsManagement\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TagsManagement\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TagsManagement\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_FooterPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Assets\js\bootstrap.bundle.js.map" />
+    <Content Include="Assets\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Assets\js\bootstrap.js.map" />
+    <Content Include="Assets\js\esm\popper-utils.js.map" />
+    <Content Include="Assets\js\esm\popper-utils.min.js.map" />
+    <Content Include="Assets\js\esm\popper.js.map" />
+    <Content Include="Assets\js\esm\popper.min.js.map" />
+    <Content Include="Assets\js\index.js.flow" />
+    <Content Include="Assets\js\popper-utils.js.map" />
+    <Content Include="Assets\js\popper-utils.min.js.map" />
+    <Content Include="Assets\js\popper.js.map" />
+    <Content Include="Assets\js\README.md" />
+    <Content Include="Assets\js\umd\popper-utils.js.map" />
+    <Content Include="Assets\js\umd\popper-utils.min.js.map" />
+    <Content Include="Assets\js\umd\popper.js.flow" />
+    <Content Include="Assets\js\umd\popper.js.map" />
+    <Content Include="Assets\js\umd\popper.min.js.map" />
     <None Include="packages.config" />
     <Content Include="Views\Category\_MenuCategory.cshtml" />
     <Content Include="Views\Post\_LastestPost.cshtml" />
@@ -328,6 +462,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Assets\js\index.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
