@@ -62,6 +62,14 @@
             </div>
             <!-- Right Menu -->
             <div class="col-lg-4 pl-5 bg-custom">
+                <form action="@Url.Action("Index", "Post")" method="get" class="form-inline float-right mb-3">
+                    <div class="form-group mx-md-3 mb-2">
+                        <input type="text" class="form-control mr-3" id="inputSearch" name="SearchString" value="@ViewData["currentFilter"]" placeholder="Search">
+                        <button type="submit" class=" form-control btn btn-primary">
+                            Search
+                        </button>
+                    </div>
+                </form>
                 @{ Html.RenderAction("LastestPost", "Post");}
                 <hr />
                 @Html.Partial("_AboutPartial")

@@ -127,7 +127,6 @@ namespace FA.JustBlog.WebMVC.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ValidateInput(false)]
         public async Task<ActionResult> Create(PostViewModel postViewModel)
         {
             if (ModelState.IsValid)
@@ -143,9 +142,9 @@ namespace FA.JustBlog.WebMVC.Areas.Admin.Controllers
                     Published = postViewModel.Published,
                     PostedOn = DateTime.Now,
                     Modified = DateTime.Now,
-                    ViewCount = postViewModel.ViewCount,
-                    RateCount = postViewModel.RateCount,
-                    TotalRate = postViewModel.TotalRate,
+                    ViewCount = 1,
+                    RateCount = 1,
+                    TotalRate = 1,
                     CategoryId = postViewModel.CategoryId,
                     Tags = await GetSelectedTagFromIds(postViewModel.SelectedTagIds)
                 };
@@ -191,6 +190,7 @@ namespace FA.JustBlog.WebMVC.Areas.Admin.Controllers
                 RateCount = post.RateCount,
                 TotalRate = post.TotalRate,
                 CategoryId = post.CategoryId,
+                SelectedTagIds = post.Tags.Select(x => x.Id)
             };
             ViewBag.Categories = new SelectList(_categoryServices.GetAll(), "Id", "Name", postViewModel.CategoryId);
             postViewModel.Tags = _tagServices.GetAll().Select(t => new SelectListItem { Value = t.Id.ToString(), Text = t.Name });
@@ -217,9 +217,6 @@ namespace FA.JustBlog.WebMVC.Areas.Admin.Controllers
                 post.ImageUrl = postViewModel.ImageUrl;
                 post.PostContent = postViewModel.PostContent;
                 post.Published = postViewModel.Published;
-                post.RateCount = postViewModel.RateCount;
-                post.TotalRate = postViewModel.TotalRate;
-                post.ViewCount = postViewModel.ViewCount;
                 post.CategoryId = postViewModel.CategoryId;
                 await UpdateSelectedTagFromIds(postViewModel.SelectedTagIds, post);
 

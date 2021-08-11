@@ -1,5 +1,8 @@
-﻿using FA.JustBlog.Services;
+﻿using FA.JustBlog.Models.Common;
+using FA.JustBlog.Services;
 using System;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -15,9 +18,32 @@ namespace FA.JustBlog.WebMVC.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string currentFilter, string searchString,
+            int? pageIndex = 1, int pageSize = 4)
         {
-            var posts = await _postServices.GetAllAsync();
+
+            if (searchString != null)
+            {
+                pageIndex = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+
+            Expression<Func<Post, bool>> filter = null;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                filter = p => p.Title.Contains(searchString);
+            }
+
+            Func<IQueryable<Post>, IOrderedQueryable<Post>> orderBy = q => q.OrderBy(c => c.PostedOn);
+
+            var posts = await _postServices.GetAsync(filter: filter, orderBy: orderBy, pageIndex: pageIndex ?? 1, pageSize: pageSize);
+
             return View(posts);
         }
 

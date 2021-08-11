@@ -230,7 +230,13 @@
     <Content Include="Assets\css\style.css" />
     <Content Include="Assets\images\about-bg.jpg" />
     <Content Include="Assets\images\bg.png" />
+    <Content Include="Assets\images\blog-07.jpg" />
+    <Content Include="Assets\images\blog-08.jpg" />
+    <Content Include="Assets\images\blog-09.jpg" />
     <Content Include="Assets\images\blog-1.jpg" />
+    <Content Include="Assets\images\blog-10.jpg" />
+    <Content Include="Assets\images\blog-11.jpg" />
+    <Content Include="Assets\images\blog-12.jpg" />
     <Content Include="Assets\images\blog-2.jpg" />
     <Content Include="Assets\images\blog-3.jpg" />
     <Content Include="Assets\images\blog-4.jpg" />

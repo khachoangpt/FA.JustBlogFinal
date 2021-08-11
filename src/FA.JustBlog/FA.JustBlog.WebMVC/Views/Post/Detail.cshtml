@@ -11,14 +11,13 @@
         <div class="post_text">
             <a class="cat" href="#">@Model.Category.Name</a>
             <h3 class="text-primary">@Model.Title</h3>
-            <p class="text-justify">@Model.PostContent</p>
+            @Model.PostContent
             <div class="date">
                 <a href="#">
                     <i class="fa fa-calendar" aria-hidden="true"></i> Posted
                     <time class="timeago" datetime="@Model.PostedOn"></time>
                     with rate @Model.Rate by @Model.ViewCount view(s)
                 </a>
-                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> @Model.Comments.Count comment(s)</a>
             </div>
         </div>
     </div>

@@ -55,34 +55,10 @@
         @Html.Partial("_FooterPartial")
     </footer>
 
-    @*<div class="row">
-        <div class="bg-dark col-lg-2" style="height: 90vh">
-            <ul class="nav flex-column ml-3">
-                <li class="active text-center mb-4 mt-2">
-                    <a class="navbar-brand text-white" href="~/">
-                        <img src="~/assets/images/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-                        Just Blog
-                    </a>
-                </li>
-                <li class="btn btn-secondary mb-3">
-                    @Html.ActionLink("Post Management", "Index", "PostsManagement", null, new { @class = "nav-link text-white" })
-                </li>
-                <li class="btn btn-secondary mb-3">
-                    @Html.ActionLink("Category Management", "Index", "CategoriesManagement", null, new { @class = "nav-link text-white" })
-                </li>
-                <li class="btn btn-secondary mb-3">
-                    @Html.ActionLink("Tag Management", "Index", "TagsManagement", null, new { @class = "nav-link text-white" })
-                </li>
-                <li class="btn btn-secondary mb-3">
-                    @Html.ActionLink("Comment Management", "Index", "CommentsManagement", null, new { @class = "nav-link text-white" })
-                </li>
-            </ul>
-        </div>*@
-
-    <script src="~/Assets/js/scripts.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="~/Assets/js/scripts.js"></script>
     <script>
         $('.time-hide').delay(3000).hide(0);
     </script>
