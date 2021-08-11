@@ -52,11 +52,7 @@
         {
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.Category.Name)</td>
-                <td>
-                    <a class="text-white" href="@Url.Action("Details", new { id = item.Id})">
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </a>
-                </td>
+                <td>@Html.DisplayFor(modelItem => item.Title)</td>
                 <td>@Html.DisplayFor(modelItem => item.ImageUrl)</td>
                 <td>@Html.DisplayFor(modelItem => item.Published)</td>
                 <td>@Html.DisplayFor(modelItem => item.PostedOn)</td>
