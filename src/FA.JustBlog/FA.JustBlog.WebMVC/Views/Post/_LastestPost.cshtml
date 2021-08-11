@@ -6,7 +6,7 @@
             <img style="width: 120px; height : 80px;" src="~/assets/images/@item.ImageUrl" alt="@item.ImageUrl" />
             <div class="media-body ml-2">
                 <a href="~/Post/Detail/@item.Id"><h6>@item.Title</h6></a>
-                <p>@item.PostedOn</p>
+                <p><time class="timeago" datetime="@item.PostedOn"></time></p>
             </div>
         </div>
     }

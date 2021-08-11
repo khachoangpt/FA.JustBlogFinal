@@ -1,9 +1,11 @@
 ﻿using FA.JustBlog.Models.BaseEntities;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FA.JustBlog.Models.Common
 {
+    [Table("Tags", Schema = "common")]
     public class Tag : BaseEntity
     {
         [StringLength(255, MinimumLength = 2, ErrorMessage = "The {0} must between {2} and {1} character.")]

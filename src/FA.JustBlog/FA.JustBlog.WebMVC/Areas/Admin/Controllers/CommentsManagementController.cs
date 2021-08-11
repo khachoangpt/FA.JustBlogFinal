@@ -23,7 +23,7 @@ namespace FA.JustBlog.WebMVC.Areas.Admin.Controllers
         }
 
         public async Task<ActionResult> Index(string sortOrder, string currentFilter, string searchString,
-            int? pageIndex = 1, int pageSize = 4)
+            int? pageIndex = 1, int pageSize = 2)
         {
             ViewData["CurrentPageSize"] = pageSize;
             ViewData["CurrentSort"] = sortOrder;

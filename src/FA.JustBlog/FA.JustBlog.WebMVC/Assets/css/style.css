@@ -8,6 +8,7 @@
     top: 0px;
     width: 300px;
     color: #e1ffff;
+    height: 90vh;
 }
 
     .nav-side-menu .brand {
@@ -26,6 +27,7 @@
         position: relative;
         width: 100%;
         margin-bottom: 10px;
+        height: auto;
     }
 
         .nav-side-menu .toggle-btn {

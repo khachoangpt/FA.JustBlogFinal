@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FA.JustBlog.Models.Common
 {
+    [Table("Posts", Schema = "common")]
     public class Post : BaseEntity
     {
         [StringLength(255, MinimumLength = 1, ErrorMessage = "The {0} must between {2} and {1} character.")]

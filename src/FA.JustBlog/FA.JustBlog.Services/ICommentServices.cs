@@ -24,6 +24,13 @@ namespace FA.JustBlog.Services
         /// </summary>
         /// <param name="postId">Id of Post</param>
         /// <returns>List of Comment</returns>
+        IEnumerable<Comment> GetCommentsForPost(Guid postId);
+
+        /// <summary>
+        /// Get Comment by Post Id
+        /// </summary>
+        /// <param name="postId">Id of Post</param>
+        /// <returns>List of Comment</returns>
         Task<IEnumerable<Comment>> GetCommentsForPostAsync(Guid postId);
 
         /// <summary>

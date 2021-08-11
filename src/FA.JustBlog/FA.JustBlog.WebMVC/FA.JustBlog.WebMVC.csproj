@@ -255,6 +255,7 @@
     <Content Include="Assets\css\bootstrap.css.map" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <None Include="Assets\js\jquery-3.4.1.intellisense.js" />
+    <Content Include="Assets\js\global.js" />
     <Content Include="Assets\js\jquery-3.4.1.js" />
     <Content Include="Assets\js\jquery-3.4.1.min.js" />
     <Content Include="Assets\js\jquery-3.4.1.slim.js" />
@@ -271,7 +272,6 @@
     <Content Include="Assets\js\popper.min.js" />
     <Content Include="Assets\js\respond.min.js" />
     <Content Include="Assets\js\scripts.js" />
-    <Content Include="Assets\js\select2.min.js" />
     <Content Include="Assets\js\src\index.js" />
     <Content Include="Assets\js\src\methods\defaults.js" />
     <Content Include="Assets\js\src\methods\destroy.js" />
@@ -335,6 +335,7 @@
     <Content Include="Assets\js\src\utils\setAttributes.js" />
     <Content Include="Assets\js\src\utils\setStyles.js" />
     <Content Include="Assets\js\src\utils\setupEventListeners.js" />
+    <Content Include="Assets\js\timeago.js" />
     <Content Include="Assets\js\umd\popper-utils.js" />
     <Content Include="Assets\js\umd\popper-utils.min.js" />
     <Content Include="Assets\js\umd\popper.js" />
@@ -395,11 +396,11 @@
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\DisplayEmail.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Comment\_ShowComments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Views\Comment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\web.config" />

@@ -63,5 +63,10 @@ namespace FA.JustBlog.Services
         {
             return await _unitOfWork.CommentRepository.GetQuery().Where(x => x.PostId == postId).ToListAsync();
         }
+
+        public IEnumerable<Comment> GetCommentsForPost(Guid postId)
+        {
+            return _unitOfWork.CommentRepository.GetQuery().Where(x => x.PostId == postId).ToList();
+        }
     }
 }

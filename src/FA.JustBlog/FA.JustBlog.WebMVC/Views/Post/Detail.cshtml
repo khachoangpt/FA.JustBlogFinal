@@ -10,14 +10,19 @@
         </div>
         <div class="post_text">
             <a class="cat" href="#">@Model.Category.Name</a>
-            <h4>@Model.Title</h4>
-            <p>@Model.PostContent</p>
+            <h3 class="text-primary">@Model.Title</h3>
+            <p class="text-justify">@Model.PostContent</p>
             <div class="date">
-                <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> @Model.PostedOn</a>
-                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i></a>
+                <a href="#">
+                    <i class="fa fa-calendar" aria-hidden="true"></i> Posted
+                    <time class="timeago" datetime="@Model.PostedOn"></time>
+                    with rate @Model.Rate by @Model.ViewCount view(s)
+                </a>
+                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> @Model.Comments.Count comment(s)</a>
             </div>
         </div>
     </div>
 </div>
 <hr class="my-4" />
 
+@{ Html.RenderAction("Index", "Comment",new { id=Model.Id});}

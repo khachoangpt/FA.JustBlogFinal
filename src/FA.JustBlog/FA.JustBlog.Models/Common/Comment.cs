@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FA.JustBlog.Models.Common
 {
+    [Table("Comments", Schema = "common")]
     public class Comment : BaseEntity
     {
         [Required(ErrorMessage = "The {0} is required.")]
