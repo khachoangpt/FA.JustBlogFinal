@@ -40,7 +40,7 @@ namespace FA.JustBlog.WebMVC.Controllers
                 filter = p => p.Title.Contains(searchString);
             }
 
-            Func<IQueryable<Post>, IOrderedQueryable<Post>> orderBy = q => q.OrderBy(c => c.PostedOn);
+            Func<IQueryable<Post>, IOrderedQueryable<Post>> orderBy = q => q.OrderByDescending(c => c.PostedOn);
 
             var posts = await _postServices.GetAsync(filter: filter, orderBy: orderBy, pageIndex: pageIndex ?? 1, pageSize: pageSize);
 
@@ -50,16 +50,30 @@ namespace FA.JustBlog.WebMVC.Controllers
         public async Task<ActionResult> Detail(Guid id)
         {
             var post = await _postServices.GetByIdAsync(id);
+
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+
+            post.ViewCount++;
+            await _postServices.UpdateAsync(post);
+
             return View(post);
         }
 
         public async Task<ActionResult> Details(int year, int month, string urlSlug)
         {
             var post = await _postServices.FindPostAsync(year, month, urlSlug);
+
             if (post == null)
             {
                 return HttpNotFound();
             }
+
+            post.ViewCount++;
+            await _postServices.UpdateAsync(post);
+
             return View("Detail", post);
         }
 

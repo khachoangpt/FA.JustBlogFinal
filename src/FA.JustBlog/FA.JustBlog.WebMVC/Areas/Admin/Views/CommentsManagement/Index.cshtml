@@ -5,9 +5,9 @@
 }
 <h2 class="text-center">Comment Management</h2>
 <h4 class="text-success time-hide">@TempData["Message"]</h4>
-<div class="btn btn-primary mb-3">
+@*<div class="btn btn-primary mb-3">
     @Html.ActionLink("Create New", "Create", null, new { @class = "text-white text-decoration-none" })
-</div>
+</div>*@
 <form action="@Url.Action("Index", "CommentsManagement")" method="get" class="form-inline float-right">
     <div class="form-group mx-md-3 mb-2">
         <input type="text" class="form-control mr-3" id="inputSearch" name="SearchString" value="@ViewData["currentFilter"]" placeholder="Input....">
@@ -52,7 +52,7 @@
                 <td>@Html.DisplayFor(modelItem => item.CommentText)</td>
                 <td>@Html.DisplayFor(modelItem => item.CommentTime)</td>
                 <td class="d-flex">
-                    <a href="@Url.Action("Edit", "CommentsManagement", new { id = item.Id})" class="btn btn-primary mr-3">Edit</a>
+                    @*<a href="@Url.Action("Edit", "CommentsManagement", new { id = item.Id})" class="btn btn-primary mr-3">Edit</a>*@
                     <form action="@Url.Action("Delete", "CommentsManagement", new{ id = item.Id })" method="post">
                         <button type="submit" onclick="return confirm('Are you sure to delete this comment?');" class="btn btn-danger">Delete</button>
                     </form>
