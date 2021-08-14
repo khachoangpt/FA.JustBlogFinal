@@ -6,13 +6,13 @@
 <h2 class="text-center">Category Management</h2>
 <h4 class="text-success time-hide">@TempData["Message"]</h4>
 <div class="btn btn-primary mb-3">
-    @Html.ActionLink("Create New", "Create", null, new { @class = "text-white text-decoration-none" })
+    <a href="@Url.Action("Create", "CategoriesManagement")" class="text-white text-decoration-none"><span class="fas fa-plus"></span></a>
 </div>
 <form action="@Url.Action("Index", "CategoriesManagement")" method="get" class="form-inline float-right">
     <div class="form-group mx-md-3 mb-2">
         <input type="text" class="form-control mr-3" id="inputSearch" name="SearchString" value="@ViewData["currentFilter"]" placeholder="Input....">
         <button type="submit" class=" form-control btn btn-primary">
-            Search
+            <i class="fas fa-search"></i>
         </button>
     </div>
 </form>
@@ -69,7 +69,7 @@
             if (i >= Model.PageIndex - ViewBag.PageRange && i <= Model.PageIndex + ViewBag.PageRange)
             {
                 <li class="page-item @(i==Model.PageIndex ? "active" : "")">
-                    <a class="@(i==Model.PageIndex ? "Current" : "") page-link"
+                    <a class="page-link"
                        href="@Url.Action("Index", "CategoriesManagement", new { sortOrder=ViewData["CurrentSort"], pageIndex=i, currentFilter=ViewData["CurrentFilter"] })">@i</a>
                 </li>
             }

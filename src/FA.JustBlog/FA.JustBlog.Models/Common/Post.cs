@@ -49,7 +49,7 @@ namespace FA.JustBlog.Models.Common
         public int TotalRate { get; set; }
 
         [NotMapped]
-        public decimal Rate { get => TotalRate / RateCount; }
+        public decimal Rate { get => RateCount == 0 ? 0 : TotalRate / RateCount; }
 
         [ForeignKey("Category")]
         public virtual Guid CategoryId { get; set; }

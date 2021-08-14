@@ -66,7 +66,7 @@ namespace FA.JustBlog.Services
 
         public IEnumerable<Comment> GetCommentsForPost(Guid postId)
         {
-            return _unitOfWork.CommentRepository.GetQuery().Where(x => x.PostId == postId).ToList();
+            return _unitOfWork.CommentRepository.GetQuery().Where(x => x.PostId == postId).OrderBy(p => p.CommentTime).ToList();
         }
     }
 }

@@ -142,9 +142,6 @@ namespace FA.JustBlog.WebMVC.Areas.Admin.Controllers
                     Published = postViewModel.Published,
                     PostedOn = DateTime.Now,
                     Modified = DateTime.Now,
-                    ViewCount = 1,
-                    RateCount = 1,
-                    TotalRate = 1,
                     CategoryId = postViewModel.CategoryId,
                     Tags = await GetSelectedTagFromIds(postViewModel.SelectedTagIds)
                 };

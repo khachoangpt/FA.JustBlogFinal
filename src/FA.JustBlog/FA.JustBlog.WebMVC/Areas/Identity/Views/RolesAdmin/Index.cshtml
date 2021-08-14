@@ -7,7 +7,7 @@
 <h2 class="text-center">Roles Management</h2>
 <h4 class="text-success time-hide">@TempData["Message"]</h4>
 <div class="btn btn-primary mb-3">
-    @Html.ActionLink("Create New", "Create", null, new { @class = "text-white text-decoration-none" })
+    <a href="@Url.Action("Create", "RolesAdmin")" class="text-white text-decoration-none"><span class="fas fa-plus"></span></a>
 </div>
 
 <table class="table table-bordered table-dark">
