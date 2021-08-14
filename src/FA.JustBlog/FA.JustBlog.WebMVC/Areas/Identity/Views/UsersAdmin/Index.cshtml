@@ -27,9 +27,9 @@
                     @Html.DisplayFor(modelItem => item.UserName)
                 </td>
                 <td class="d-flex">
-                    <a href="@Url.Action("Edit", "UsersAdmin", new { id = item.Id})" class="btn btn-primary mr-3">Edit</a>
-                    <a href="@Url.Action("Details", "UsersAdmin", new { id = item.Id})" class="btn btn-secondary mr-3">Details</a>
-                    <a href="@Url.Action("Delete", "UsersAdmin", new { id = item.Id})" class="btn btn-danger mr-3">Delete</a>
+                    <a href="@Url.Action("Edit", "UsersAdmin", new { id = item.Id})" class="mr-3"><i class="far fa-edit"></i></a>
+                    <a href="@Url.Action("Details", "UsersAdmin", new { id = item.Id})" class="mr-3"><i class="fas fa-info-circle"></i></a>
+                    <a href="@Url.Action("Delete", "UsersAdmin", new { id = item.Id})" class="text-danger mr-3"><i class="far fa-trash-alt"></i></a>
                 </td>
             </tr>
         }

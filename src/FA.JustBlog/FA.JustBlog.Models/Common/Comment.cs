@@ -1,4 +1,5 @@
 ﻿using FA.JustBlog.Models.BaseEntities;
+using FA.JustBlog.Models.Security;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;

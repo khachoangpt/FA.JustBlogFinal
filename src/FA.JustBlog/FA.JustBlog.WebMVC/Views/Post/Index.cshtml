@@ -11,7 +11,7 @@
                 <img class="img-fluid" src="~/assets/images/@item.ImageUrl" alt="@item.ImageUrl">
             </div>
             <div class="post_text">
-                <a class="cat" href="#">@item.Category.Name</a>
+                <a class="cat" href="@Url.Action("GetPostByCategory", "Post", new { category = item.Category.Name})">@item.Category.Name</a>
                 <br />
                 @Html.ActionLink(item.Title, "Details", "Post",
                new { @year = item.PostedOn.Year, month = item.PostedOn.Month.ToString("00"), urlSlug = item.UrlSlug },
@@ -21,7 +21,7 @@
                 <div class="date text-secondary">
                     <i class="fa fa-calendar" aria-hidden="true"></i>  Posted
                     <time class="timeago" datetime="@item.PostedOn"></time>
-                    with rate @item.Rate by @item.ViewCount view(s)
+                    with rate @item.Rate by @item.ViewCount @(item.ViewCount <= 1 ? "view" : "views")
                 </div>
             </div>
         </div>

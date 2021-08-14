@@ -44,9 +44,9 @@
                 <td>@Html.DisplayFor(modelItem => item.Description)</td>
                 <td>@Html.DisplayFor(modelItem => item.Count)</td>
                 <td class="d-flex">
-                    <a href="@Url.Action("Edit", "TagsManagement", new { id = item.Id})" class="btn btn-primary mr-3">Edit</a>
+                    <a href="@Url.Action("Edit", "TagsManagement", new { id = item.Id})" class="mr-3"><i class="far fa-edit"></i></a>
                     <form action="@Url.Action("Delete", "TagsManagement", new{ id = item.Id })" method="post">
-                        <button type="submit" onclick="return confirm('Are you sure to delete this tag?');" class="btn btn-danger">Delete</button>
+                        <button type="submit" onclick="return confirm('Are you sure to delete this tag?');" class="bg-transparent border-0 text-danger"><i class="far fa-trash-alt"></i></button>
                     </form>
                 </td>
             </tr>

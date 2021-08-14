@@ -5,7 +5,7 @@
         <div class="media post_item mb-3">
             <img style="width: 120px; height : 80px;" src="~/assets/images/@item.ImageUrl" alt="@item.ImageUrl" />
             <div class="media-body ml-2">
-                <a href="~/Post/Detail/@item.Id"><h6>@item.Title</h6></a>
+                <a href="@Url.Action("Details", "Post", new { @year = item.PostedOn.Year, month = item.PostedOn.Month.ToString("00"), urlSlug = item.UrlSlug })"><h6>@item.Title</h6></a>
                 <p> View: @item.ViewCount</p>
             </div>
         </div>

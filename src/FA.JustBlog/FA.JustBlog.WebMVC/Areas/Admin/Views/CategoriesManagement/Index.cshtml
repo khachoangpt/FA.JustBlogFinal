@@ -40,9 +40,9 @@
                 <td>@Html.DisplayFor(modelItem => item.UrlSlug)</td>
                 <td>@Html.DisplayFor(modelItem => item.Description)</td>
                 <td class="d-flex">
-                    <a href="@Url.Action("Edit", "CategoriesManagement", new { id = item.Id})" class="btn btn-primary mr-3">Edit</a>
+                    <a href="@Url.Action("Edit", "CategoriesManagement", new { id = item.Id})" class="mr-3"><i class="far fa-edit"></i></a>
                     <form action="@Url.Action("Delete", "CategoriesManagement", new{ id = item.Id })" method="post">
-                        <button type="submit" onclick="return confirm('Are you sure to delete this category?');" class="btn btn-danger">Delete</button>
+                       <a><button type="submit" onclick="return confirm('Are you sure to delete this category?');" class="bg-transparent border-0 text-danger"><i class="far fa-trash-alt"></i></button>
                     </form>
                 </td>
             </tr>

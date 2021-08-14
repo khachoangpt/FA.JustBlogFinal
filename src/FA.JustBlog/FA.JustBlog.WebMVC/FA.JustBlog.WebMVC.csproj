@@ -423,7 +423,6 @@
     <Content Include="Areas\Admin\Views\TagsManagement\Create.cshtml" />
     <Content Include="Areas\Admin\Views\TagsManagement\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\TagsManagement\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_FooterPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Assets\js\bootstrap.bundle.js.map" />
     <Content Include="Assets\js\bootstrap.bundle.min.js.map" />

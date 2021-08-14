@@ -54,7 +54,7 @@
                 <td class="d-flex">
                     @*<a href="@Url.Action("Edit", "CommentsManagement", new { id = item.Id})" class="btn btn-primary mr-3">Edit</a>*@
                     <form action="@Url.Action("Delete", "CommentsManagement", new{ id = item.Id })" method="post">
-                        <button type="submit" onclick="return confirm('Are you sure to delete this comment?');" class="btn btn-danger">Delete</button>
+                        <button type="submit" onclick="return confirm('Are you sure to delete this comment?');" class="bg-transparent border-0 text-danger"><i class="far fa-trash-alt"></i></button>
                     </form>
                 </td>
             </tr>

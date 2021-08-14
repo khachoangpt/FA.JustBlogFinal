@@ -9,13 +9,13 @@
             <img class="img-fluid" src="~/assets/images/@Model.ImageUrl" alt="@Model.ImageUrl">
         </div>
         <div class="post_text">
-            <a class="cat" href="#">@Model.Category.Name</a>
+            <a class="cat" href="@Url.Action("GetPostByCategory", "Post", new { category = Model.Category.Name})">@Model.Category.Name</a>
             <h2 class="text-primary">@Model.Title</h2>
             <p>
                 @Html.Raw(@Model.PostContent)
             </p>
             <div class="date">
-                <a href="#">
+                <a class="text-primary text-decoration-none">
                     <i class="fa fa-calendar" aria-hidden="true"></i> Posted
                     <time class="timeago" datetime="@Model.PostedOn"></time>
                     with rate @Model.Rate by @Model.ViewCount view(s)
@@ -111,19 +111,19 @@
                         timeFormat = timeFormat.format("dddd, dd mmmm yyyy");
 
                         $(".comment-list").prepend(`
-                            <div class="single-comment justify-content-between d-flex mb-2">
-                                <div class="user justify-content-between">
-                                    <div class="thumb d-flex">
-                                        <img class="rounded-circle mr-2" src="/Assets/images/avatar01.png" alt="avatar">
-                                        <div><a class="h4" href="#">${data.Name}</a><i> - ${timeFormat}</i></div>
-                                    </div>
-                                    <div>
-                                        <p class="date h6">${data.CommentHeader}</p>
-                                        <p class="comment">${data.CommentText}</p>
+                                <div class="single-comment justify-content-between d-flex mb-2">
+                                    <div class="user justify-content-between">
+                                        <div class="thumb d-flex">
+                                            <img class="rounded-circle mr-2" src="/Assets/images/avatar01.png" alt="avatar">
+                                            <div><a class="h4" href="#">${data.Name}</a><i> - ${timeFormat}</i></div>
+                                        </div>
+                                        <div>
+                                            <p class="date h6">${data.CommentHeader}</p>
+                                            <p class="comment">${data.CommentText}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            `);
+                                `);
                     }
                 });
             })
